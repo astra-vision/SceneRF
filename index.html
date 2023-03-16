@@ -421,17 +421,16 @@ project, co-funded by BpiFrance in the Investissement d’Avenir Program. It was
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js" integrity="sha512-J9QfbPuFlqGD2CYVCa6zn8/7PEgZnGpM5qtFOBZgwujjDnG5w5Fjx46YzqvIh/ORstcj7luStvvIHkisQi5SKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        ids = ["preload-teaser-11", "preload-teaser-12", "preload-teaser-21", 
-                "preload-teaser-22", "preload-teaser-31", "preload-teaser-32",  
-                "preload-teaser-41", "preload-teaser-51",
-                "preload-3d", "preload-teaser-3d",
-                "preload-quals-1", "preload-quals-2", "preload-quals-3", "preload-quals-4"]
-        max_cnts = [2, 2, 2, 
-                    2, 2, 2, 
-                    2, 2,
-                    4, 5, 2, 2, 2, 2]
-        cnts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        for (let i = 0; i < ids.length; i++) {      
+        ids = ["preload-teaser-11", "preload-teaser-21", "preload-teaser-31", "preload-teaser-41", "preload-teaser-51",
+               "preload-3d", "preload-teaser-3d",
+               "preload-quals-1", "preload-quals-2", "preload-quals-3", "preload-quals-4"]
+        max_cnts = [2, 2, 2, 2, 2,
+                    4, 5, 
+                    2, 2, 2, 2]
+        cnts = [0, 0, 0, 0, 0,
+                0, 0, 
+                0, 0, 0, 0]
+        for (let i = 0; i < ids.length; i++) {   
             $('.' + ids[i]).load(function() {
                 if (cnts[i] < max_cnts[i]) {
                     cnts[i] += 1   
