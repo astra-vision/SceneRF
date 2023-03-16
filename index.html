@@ -16,6 +16,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <style>
+        .item-row {
+            border-bottom: 1px solid #d6d6d6;
+        }
         .novel-depth-imgs {
             margin-top:10px
         }
@@ -60,7 +63,7 @@
         </div>
         
         <div class="row mt-4">
-            <div class="col-md-6 mx-auto">
+            <div class="col-md-4 mx-auto">
                 <ul class="nav nav-justified">
                     <li class="nav-item">
                         <a href="https://arxiv.org/abs/2212.02501">
@@ -76,124 +79,210 @@
                     </li>
                 </ul>
             </div>
+            
         </div>
-        
-        <div class="row mb-5">
-            <div class="col-md-6 mt-4">
-                <div class="text-center">Novel depths synthesis from <i>a single image</i></div>
-                <div class="row novel-depth-item position-relative">
-                    <div class="col-5 offset-1  my-auto">
-                        <img src="imgs/002705.png"  class="novel-depth-input-img rounded img-fluid img-thumbnail">
-                        <div class="position-absolute top-50 start-50 translate-middle"><i class="fa-solid fa-arrow-right"></i></div>
+
+        <div class="row novel-depth-item position-relative mt-4">
+            <div class="col-md-6 text-center">
+                <!-- <h3 class="text-center">Teaser</h3> -->
+                <img src="imgs/teaser.png" style="margin-top: 10px;"  class=" rounded img-fluid ">
+            </div>
+            <div class="col-md-6 text-center">
+                <h3 class="text-center">Abstract</h3>
+            <p  style="text-align: justify;">
+    3D reconstruction from 2D image was extensively studied, training with depth supervision. To relax the dependence to costly-acquired datasets we propose SceneRF, a
+self-supervised monocular scene reconstruction method using only posed image sequences for training. Fueled by
+the recent progress in neural radiance fields (NeRF) we
+optimize a radiance field though with explicit depth optimization and a novel probabilistic sampling strategy to effi-
+ciently handle large scenes. At inference, a single input image suffices to hallucinate novel depth views which are fused
+together to obtain 3D scene reconstruction. Thorough experiments demonstrate that we outperform all recent baselines for novel depth views synthesis and scene reconstruction,
+ on indoor BundleFusion and outdoor SemanticKITTI.
+            </p>
+            </div>
+            
+           
+        </div>    
+        <h3 class="text-center mt-5 mb-2">Demo</h3> 
+        <div class="row">
+            
+            <div class="mt-2 mb-1">
+                
+                <div class="row position-relative">
+                    <div class="col-4">
+                        <div style="text-align: center;">A <b>single</b> image input</div>
                     </div>
                     
-                    <div class="col-5">
-                        <div class="position-relative novel-depth-imgs">
-                            <img src="imgs/2705_swing_disp.gif" class="preload-teaser-11 novel-depth-imgs rounded img-fluid img-thumbnail">
-                            <img src="imgs/2705_swing_rgb.gif" class="preload-teaser-11 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
-                        </div>
-                        <div class="position-relative novel-depth-imgs">
-                            <img src="imgs/2705_zoom_disp.gif" class="preload-teaser-12 novel-depth-imgs rounded img-fluid img-thumbnail">
-                            <img src="imgs/2705_zoom_rgb.gif" class="preload-teaser-12 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
-                        </div>
+                    <div class="col-4">
+                        <div class="text-center">Novel <b>depths</b>/views synthesis</div>
+                    </div>
+                    <div class="col-4">       
+                        <div class="text-center"><b>3D reconstruction</b></div>                                      
                     </div>
                 </div>    
-
-                <div class="row novel-depth-item position-relative">
-                    <div class="col-5 offset-1  my-auto">
-                        <img src="imgs/002580.png"  class="novel-depth-input-img rounded img-fluid img-thumbnail">
-                        <div class="position-absolute top-50 start-50 translate-middle"><i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                    <div class="col-5">
-                        <div class="position-relative novel-depth-imgs">
-                            <img src="imgs/2580_swing_disp.gif" class="preload-teaser-21 novel-depth-imgs rounded img-fluid img-thumbnail">
-                            <img src="imgs/2580_swing_rgb.gif" class="preload-teaser-21 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
-                        </div>
-                        <div class="position-relative novel-depth-imgs">
-                            <img src="imgs/2580_zoom_disp.gif" class="preload-teaser-22 novel-depth-imgs rounded img-fluid img-thumbnail">
-                            <img src="imgs/2580_zoom_rgb.gif" class="preload-teaser-22 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
-                        </div>
-                    </div>
-                </div>    
-
-                <div class="row novel-depth-item position-relative">
-                    <div class="col-5 offset-1 my-auto">
-                        <img src="imgs/002280.png"  class="novel-depth-input-img rounded img-fluid img-thumbnail">
-                        <div class="position-absolute top-50 start-50 translate-middle"><i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                    <div class="col-5">
-                        <div class="position-relative novel-depth-imgs" >
-                            <img src="imgs/2280_swing_disp.gif" class="preload-teaser-31 rounded img-fluid img-thumbnail">
-                            <img src="imgs/2280_swing_rgb.gif" class="preload-teaser-31 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">    
-                        </div>
-                        <div class="position-relative novel-depth-imgs ">
-                            <img src="imgs/2280_zoom_disp.gif" class="preload-teaser-32 novel-depth-imgs rounded img-fluid img-thumbnail">
-                            <img src="imgs/2280_zoom_rgb.gif" class="preload-teaser-32 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">    
-                        </div>
-                    </div>
-                </div>                                
-            </div>
-            <div class="col-md-6 mt-4 text-center">
-                <div style="margin-bottom:16px">3D reconstruction from <i>a single image</i></div>
                 
-                <div class="row novel-depth-item position-relative">
-                    <div class="col-5 my-auto offset-1 ">
-                        <img src="imgs/002705.png"  class="rounded img-fluid img-thumbnail">
-                        <div class="position-absolute top-50 start-50 translate-middle arrow-3d"><i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                    <div class="col-5">                        
-                        <img src="imgs/3d/002705.gif" class="preload-teaser-3d rounded img-fluid">                         
-                    </div>
-                </div>       
+                
+            </div>
+          
+        </div>
 
-                <div class="row novel-depth-item position-relative">
-                    <div class="col-5 my-auto offset-1 ">
-                        <img src="imgs/002580.png"  class="rounded img-fluid img-thumbnail">
-                        <div class="position-absolute top-50 start-50 translate-middle arrow-3d"><i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                    <div class="col-5">                        
-                        <img src="imgs/3d/002580.gif" class="preload-teaser-3d rounded img-fluid">                         
-                    </div>
-                </div>       
+        <div class="row">
 
-                <div class="row novel-depth-item position-relative">
-                    <div class="col-5 my-auto offset-1 ">
-                        <img src="imgs/002280.png"  class="rounded img-fluid img-thumbnail">
-                        <div class="position-absolute top-50 start-50 translate-middle arrow-3d"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="row novel-depth-item position-relative item-row">
+                <div class="col-4">
+                    <img src="imgs/kitti/002705.png" style="margin-top: 10px;"  class="novel-depth-input-img rounded img-fluid img-thumbnail ">
+                    <!-- <div class="position-absolute top-50 start-50 translate-middle"><i class="fa-solid fa-arrow-right"></i></div> -->
+                </div>
+                
+                <div class="col-4">
+                    <div class="position-relative novel-depth-imgs/kitti">
+                        
+                        <img src="imgs/kitti/2705_swing_disp.gif" class="preload-teaser-11 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2705_swing_rgb.gif" class="preload-teaser-11 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
                     </div>
-                    <div class="col-5">                        
-                        <img src="imgs/3d/002280.gif" class="preload-teaser-3d rounded img-fluid">                         
-                    </div>
-                </div>       
-
-
-                <img src="imgs/teaser_3d_recon.gif" class="rounded img-fluid img-thumbnail">
-            </div>            
+                    <!-- <div class="position-relative novel-depth-imgs">
+                        <img src="imgs/kitti/2705_zoom_disp.gif" class="preload-teaser-12 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2705_zoom_rgb.gif" class="preload-teaser-12 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                    </div> -->
+                </div>
+                <div class="col-4">                       
+                    <img src="imgs/kitti/3d/002705.gif" class="preload-teaser-3d rounded img-fluid">                         
+                </div>
+            </div>    
+    
         </div>
         
+        <div class="row">
 
-        <div class="row px-md-5 mb-5">
+            <div class="row novel-depth-item position-relative item-row">
+                <div class="col-4">
+                    <img src="imgs/kitti/002580.png" style="margin-top: 10px;"  class="novel-depth-input-img rounded img-fluid img-thumbnail ">
+                    <!-- <div class="position-absolute top-50 start-50 translate-middle"><i class="fa-solid fa-arrow-right"></i></div> -->
+                </div>
+                
+                <div class="col-4">
+                    <div class="position-relative novel-depth-imgs/kitti">
+                        <img src="imgs/kitti/2580_swing_disp.gif" class="preload-teaser-11 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2580_swing_rgb.gif" class="preload-teaser-11 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                    </div>
+                    <!-- <div class="position-relative novel-depth-imgs">
+                        <img src="imgs/kitti/2705_zoom_disp.gif" class="preload-teaser-12 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2705_zoom_rgb.gif" class="preload-teaser-12 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                    </div> -->
+                </div>
+                <div class="col-4">                       
+                    <img src="imgs/kitti/3d/002580.gif" class="preload-teaser-3d rounded img-fluid">                         
+                </div>
+            </div>    
+    
+        </div>
+        <div class="row">
+
+            <div class="row novel-depth-item position-relative item-row">
+                <div class="col-4">
+                    <img src="imgs/kitti/002580.png" style="margin-top: 10px;"  class="novel-depth-input-img rounded img-fluid img-thumbnail ">
+                    <!-- <div class="position-absolute top-50 start-50 translate-middle"><i class="fa-solid fa-arrow-right"></i></div> -->
+                </div>
+                
+                <div class="col-4">
+                    <div class="position-relative novel-depth-imgs/kitti">
+                        <img src="imgs/kitti/2580_swing_disp.gif" class="preload-teaser-11 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2580_swing_rgb.gif" class="preload-teaser-11 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                    </div>
+                    <!-- <div class="position-relative novel-depth-imgs">
+                        <img src="imgs/kitti/2705_zoom_disp.gif" class="preload-teaser-12 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2705_zoom_rgb.gif" class="preload-teaser-12 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                    </div> -->
+                </div>
+                <div class="col-4">                       
+                    <img src="imgs/kitti/3d/002580.gif" class="preload-teaser-3d rounded img-fluid">                         
+                </div>
+            </div>    
+    
+        </div>
+        <div class="row">
+
+            <div class="row novel-depth-item position-relative item-row" style="padding-bottom: 10px;">
+                <div class="col-4 text-center">
+                    <!-- <img src="imgs/kitti/002580.png" style="margin-top: 10px;"  class="novel-depth-input-img rounded img-fluid img-thumbnail "> -->
+                    <!-- <div class="position-absolute top-50 start-50 translate-middle"><i class="fa-solid fa-arrow-right"></i></div> -->
+                    <img style="width:60%;margin-top:10px" src="imgs/bundlefusion/001500.jpg"  class="novel-depth-input-img rounded img-fluid img-thumbnail">
+                </div>
+                
+                <div class="col-4">
+                    <div class="position-relative novel-depth-imgs" style="width: 60%;translate:40%" >
+                        <img  src="imgs/bundlefusion/1500_disp.gif" class="preload-teaser-41 rounded img-fluid img-thumbnail">
+                        <img src="imgs/bundlefusion/1500_rgb.gif" class="preload-teaser-41 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">    
+                    </div>
+                    <!-- <div class="position-relative novel-depth-imgs/kitti">
+                        <img src="imgs/kitti/2580_swing_disp.gif" class="preload-teaser-11 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2580_swing_rgb.gif" class="preload-teaser-11 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                    </div> -->
+                    <!-- <div class="position-relative novel-depth-imgs">
+                        <img src="imgs/kitti/2705_zoom_disp.gif" class="preload-teaser-12 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2705_zoom_rgb.gif" class="preload-teaser-12 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                    </div> -->
+                </div>
+                <div class="col-4">                       
+                    <img src="imgs/bundlefusion/001500.gif" class="preload-teaser-3d rounded img-fluid">                        
+                </div>
+            </div>    
+    
+        </div>
+
+
+        <div class="row">
+
+            <div class="row novel-depth-item position-relative item-row" style="padding-bottom: 10px;">
+                <div class="col-4 text-center">
+                    <!-- <img src="imgs/kitti/002280.png" style="margin-top: 10px;"  class="novel-depth-input-img rounded img-fluid img-thumbnail "> -->
+                    <!-- <div class="position-absolute top-50 start-50 translate-middle"><i class="fa-solid fa-arrow-right"></i></div> -->
+                    <img style="width:60%;margin-top:10px"  src="imgs/bundlefusion/002200.jpg"  class="novel-depth-input-img rounded img-fluid img-thumbnail">
+                </div>
+                
+                <div class="col-4">
+                    <div class="position-relative novel-depth-imgs" style="width: 60%;translate:40%"" >
+                        <img  src="imgs/bundlefusion/2200_disp.gif" class="preload-teaser-51 rounded img-fluid img-thumbnail">
+                        <img src="imgs/bundlefusion/2200_rgb.gif" class="preload-teaser-51 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">    
+                    </div>
+                    <!-- <div class="position-relative novel-depth-imgs/kitti">
+                        
+                        <img src="imgs/kitti/2280_swing_disp.gif" class="preload-teaser-11 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2280_swing_rgb.gif" class="preload-teaser-11 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                    </div> -->
+                    <!-- <div class="position-relative novel-depth-imgs">
+                        <img src="imgs/kitti/2705_zoom_disp.gif" class="preload-teaser-12 novel-depth-imgs rounded img-fluid img-thumbnail">
+                        <img src="imgs/kitti/2705_zoom_rgb.gif" class="preload-teaser-12 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                    </div> -->
+                </div>
+                <div class="col-4">                       
+                    <img src="imgs/bundlefusion/2200.gif" class="preload-teaser-3d rounded img-fluid">                         
+                </div>
+            </div>    
+    
+        </div>
+
+        <!-- <div class="text-center">
+            <img src="imgs/teaser_3d_recon.gif" class="rounded img-fluid img-thumbnail">
+        </div>             -->
+     
+
+        <!-- <div class="row px-md-5 mb-5 mt-5">
             <h3 class="text-center">Abstract</h3>
             <p class="col-md-8 mx-auto" style="text-align: justify;">
-                In the literature, 3D reconstruction from 2D image has
-been extensively addressed but often still requires geometrical supervision. 
-In this paper, we propose a self-supervised
-monocular scene reconstruction method with neural radiance fields
-(NeRF) learned from multiple image sequences with pose.
-To improve geometry prediction, we introduce new geometry constraints and a novel probabilistic sampling strategy
-that efficiently update radiance fields. As the latter are conditioned on a single frame, 
-scene reconstruction is achieved
-from the fusion of multiple synthetized novel depth views.
-This is enabled by our spherical-decoder which allows hallucination beyond the input frame field of view. Thorough
-experiments demonstrate that we outperform all baselines
-on all metrics for novel depth views synthesis and scene reconstruction.
+    3D reconstruction from 2D image was extensively studied, training with depth supervision. To relax the dependence to costly-acquired datasets we propose SceneRF, a
+self-supervised monocular scene reconstruction method using only posed image sequences for training. Fueled by
+the recent progress in neural radiance fields (NeRF) we
+optimize a radiance field though with explicit depth optimization and a novel probabilistic sampling strategy to effi-
+ciently handle large scenes. At inference, a single input image suffices to hallucinate novel depth views which are fused
+together to obtain 3D scene reconstruction. Thorough experiments demonstrate that we outperform all recent baselines for novel depth views synthesis and scene reconstruction,
+ on indoor BundleFusion and outdoor SemanticKITTI.
             </p>
-        </div>
+        </div> -->
 
 
         <div class="row px-md-5 mb-5">
             <div class="ratio ratio-16x9">
-                <iframe src="https://www.youtube.com/embed/tRah87F4GDk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/W2TiveMHUsU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
         
@@ -222,10 +311,10 @@ on all metrics for novel depth views synthesis and scene reconstruction.
                     </tr>
                     <tr>
                         <td class="text-center"></td>
-                        <td class="input-td"><img src="imgs/quals/000460.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
-                        <td class="input-td"><img src="imgs/quals/000935.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
-                        <td class="input-td"><img src="imgs/quals/002180.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
-                        <td class="input-td"><img src="imgs/quals/003500.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
+                        <td class="input-td"><img src="imgs/kitti/quals/000460.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
+                        <td class="input-td"><img src="imgs/kitti/quals/000935.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
+                        <td class="input-td"><img src="imgs/kitti/quals/002180.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
+                        <td class="input-td"><img src="imgs/kitti/quals/003500.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
                     </tr>
                     
                     <tr style="border-top: 1px solid #b8b8b8;">
@@ -233,57 +322,57 @@ on all metrics for novel depth views synthesis and scene reconstruction.
                         <td colspan="4" class="text-center">Novel depths <span class="text-muted">(and views)</span></td>
                     </tr>
                     <tr>
-                        <td class="text-center"><img src="imgs/traj/swing.gif" class="traj-vid novel-depth-imgs rounded img-fluid"></td>
+                        <td class="text-center"><img src="imgs/kitti/traj/swing.gif" class="traj-vid novel-depth-imgs rounded img-fluid"></td>
                         <td>
                             <div class="position-relative">
-                                <img src="imgs/quals/000460_swing_disp.gif" class="preload-quals-1 novel-depth-imgs rounded img-fluid img-thumbnail">
-                                <img src="imgs/quals/000460_swing_rgb.gif" class="preload-quals-1 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                                <img src="imgs/kitti/quals/000460_swing_disp.gif" class="preload-quals-1 novel-depth-imgs rounded img-fluid img-thumbnail">
+                                <img src="imgs/kitti/quals/000460_swing_rgb.gif" class="preload-quals-1 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
                             </div>
                         </td>
                         <td>
                             <div class="position-relative">
-                                <img src="imgs/quals/000935_swing_disp.gif" class="preload-quals-2 novel-depth-imgs rounded img-fluid img-thumbnail">
-                                <img src="imgs/quals/000935_swing_rgb.gif" class="preload-quals-2 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                                <img src="imgs/kitti/quals/000935_swing_disp.gif" class="preload-quals-2 novel-depth-imgs rounded img-fluid img-thumbnail">
+                                <img src="imgs/kitti/quals/000935_swing_rgb.gif" class="preload-quals-2 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
                             </div>
                         </td>
                         <td>
                             <div class="position-relative">
-                                <img src="imgs/quals/002180_swing_disp.gif" class="preload-quals-3 novel-depth-imgs rounded img-fluid img-thumbnail">
-                                <img src="imgs/quals/002180_swing_rgb.gif" class="preload-quals-3 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                                <img src="imgs/kitti/quals/002180_swing_disp.gif" class="preload-quals-3 novel-depth-imgs rounded img-fluid img-thumbnail">
+                                <img src="imgs/kitti/quals/002180_swing_rgb.gif" class="preload-quals-3 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
                             </div>
                         </td>
                         <td>
                             <div class="position-relative">
-                                <img src="imgs/quals/003500_swing_disp.gif" class="preload-quals-4 novel-depth-imgs rounded img-fluid img-thumbnail">
-                                <img src="imgs/quals/003500_swing_rgb.gif" class="preload-quals-4 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                                <img src="imgs/kitti/quals/003500_swing_disp.gif" class="preload-quals-4 novel-depth-imgs rounded img-fluid img-thumbnail">
+                                <img src="imgs/kitti/quals/003500_swing_rgb.gif" class="preload-quals-4 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
                             </div>
                         </td>
                     </tr>
 
                     <tr>
-                        <td class="text-center input-td"><img src="imgs/traj/zoom.gif"  class="traj-vid novel-depth-imgs rounded img-fluid"></td>
+                        <td class="text-center input-td"><img src="imgs/kitti/traj/zoom.gif"  class="traj-vid novel-depth-imgs rounded img-fluid"></td>
                         <td class="input-td">
                             <div class="position-relative">
-                                <img src="imgs/quals/000460_zoom_disp.gif" class="preload-quals novel-depth-imgs rounded img-fluid img-thumbnail">
-                                <img src="imgs/quals/000460_zoom_rgb.gif" class="preload-quals rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                                <img src="imgs/kitti/quals/000460_zoom_disp.gif" class="preload-quals novel-depth-imgs rounded img-fluid img-thumbnail">
+                                <img src="imgs/kitti/quals/000460_zoom_rgb.gif" class="preload-quals rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
                             </div>
                         </td>
                         <td class="input-td">
                             <div class="position-relative">
-                                <img src="imgs/quals/000935_zoom_disp.gif" class="preload-quals novel-depth-imgs rounded img-fluid img-thumbnail">
-                                <img src="imgs/quals/000935_zoom_rgb.gif" class="preload-quals rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                                <img src="imgs/kitti/quals/000935_zoom_disp.gif" class="preload-quals novel-depth-imgs rounded img-fluid img-thumbnail">
+                                <img src="imgs/kitti/quals/000935_zoom_rgb.gif" class="preload-quals rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
                             </div>
                         </td>
                         <td class="input-td">
                             <div class="position-relative">
-                                <img src="imgs/quals/002180_zoom_disp.gif" class="preload-quals novel-depth-imgs rounded img-fluid img-thumbnail">
-                                <img src="imgs/quals/002180_zoom_rgb.gif" class="preload-quals rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                                <img src="imgs/kitti/quals/002180_zoom_disp.gif" class="preload-quals novel-depth-imgs rounded img-fluid img-thumbnail">
+                                <img src="imgs/kitti/quals/002180_zoom_rgb.gif" class="preload-quals rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
                             </div>
                         </td>
                         <td class="input-td">
                             <div class="position-relative">
-                                <img src="imgs/quals/003500_zoom_disp.gif" class="preload-quals novel-depth-imgs rounded img-fluid img-thumbnail">
-                                <img src="imgs/quals/003500_zoom_rgb.gif" class="preload-quals rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
+                                <img src="imgs/kitti/quals/003500_zoom_disp.gif" class="preload-quals novel-depth-imgs rounded img-fluid img-thumbnail">
+                                <img src="imgs/kitti/quals/003500_zoom_rgb.gif" class="preload-quals rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">
                             </div>
                         </td>
                     </tr>
@@ -293,10 +382,10 @@ on all metrics for novel depth views synthesis and scene reconstruction.
                     </tr>
                     <tr>
                         <td class="text-center"></td>
-                        <td><img src="imgs/3d/000460.gif"  class="preload-3d novel-depth-imgs rounded img-fluid "></td>
-                        <td><img src="imgs/3d/000935.gif"  class="preload-3d novel-depth-imgs rounded img-fluid "></td>
-                        <td><img src="imgs/3d/002180.gif"  class="preload-3d novel-depth-imgs rounded img-fluid"></td>
-                        <td><img src="imgs/3d/003500.gif"  class="preload-3d novel-depth-imgs rounded img-fluid"></td>
+                        <td><img src="imgs/kitti/3d/000460.gif"  class="preload-3d novel-depth-imgs rounded img-fluid "></td>
+                        <td><img src="imgs/kitti/3d/000935.gif"  class="preload-3d novel-depth-imgs rounded img-fluid "></td>
+                        <td><img src="imgs/kitti/3d/002180.gif"  class="preload-3d novel-depth-imgs rounded img-fluid"></td>
+                        <td><img src="imgs/kitti/3d/003500.gif"  class="preload-3d novel-depth-imgs rounded img-fluid"></td>
                     </tr>
                 </tbody>
             </table>
@@ -333,7 +422,7 @@ project, co-funded by BpiFrance in the Investissement d’Avenir Program. It was
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js" integrity="sha512-J9QfbPuFlqGD2CYVCa6zn8/7PEgZnGpM5qtFOBZgwujjDnG5w5Fjx46YzqvIh/ORstcj7luStvvIHkisQi5SKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         ids = ["preload-teaser-11", "preload-teaser-12", "preload-teaser-21", 
-                "preload-teaser-22", "preload-teaser-31", "preload-teaser-32", 
+                "preload-teaser-22", "preload-teaser-31", "preload-teaser-32",  "preload-teaser-41", "preload-teaser-51",
                 "preload-3d", "preload-teaser-3d",
                 "preload-quals-1", "preload-quals-2", "preload-quals-3", "preload-quals-4"]
         max_cnts = [2, 2, 2, 2, 2, 2, 4, 3, 2, 2, 2, 2]
