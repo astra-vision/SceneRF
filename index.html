@@ -436,7 +436,7 @@ project, co-funded by BpiFrance in the Investissement d’Avenir Program. It was
                 if (cnts[i] < max_cnts[i]) {
                     cnts[i] += 1   
                     
-                    if (cnts[i] == max_cnts[i]) {
+                    if (cnts[i] == 0 || cnts[i] == max_cnts[i]) {
                         console.log(ids[i], cnts[i], max_cnts[i])                     
                         $('.' + ids[i]).attr('src', function(i,a){                        
                             $(this).attr('src','').removeClass(ids[i]).attr('src',a);
