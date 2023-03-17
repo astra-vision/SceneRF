@@ -33,7 +33,10 @@
         }
         .rgbs {
             width: 38%;
-            padding:1px
+            padding:1px;
+            background-color: rgb(168 0 219);
+            /* border-color: rgb(168 0 219); */
+            border: none;
         }
         .novel-depth-item {
             margin-bottom: 1rem;
@@ -43,6 +46,16 @@
         }
         .traj-vid {
             width: 80%;
+        }
+        .novel-depth-input-img {
+            background-color: rgb(1 126 0);
+            border: none;
+            /* border-color: rgb(1 126 0); */
+        }
+        .novel-depth-imgs {
+            background-color: rgb(168 0 219);
+            border: none;
+            /* border-color: rgb(168 0 219); */
         }
     </style>
 </head>
@@ -116,7 +129,7 @@ together to obtain 3D scene reconstruction. Thorough experiments demonstrate tha
                         <div class="text-center">Novel <b>depths</b>/views synthesis</div>
                     </div>
                     <div class="col-4">       
-                        <div class="text-center"><b>3D reconstruction</b></div>                                      
+                        <div class="text-center"><b>3D reconstruction</b> (Mesh)</div>                                      
                     </div>
                 </div>    
                 
@@ -214,7 +227,7 @@ together to obtain 3D scene reconstruction. Thorough experiments demonstrate tha
                         <div class="text-center">Novel <b>depths</b>/views synthesis</div>
                     </div>
                     <div class="col-4">       
-                        <div class="text-center"><b>3D reconstruction</b></div>                                      
+                        <div class="text-center"><b>3D reconstruction</b> (Mesh)</div>                                      
                     </div>
                 </div>    
                 
@@ -232,8 +245,8 @@ together to obtain 3D scene reconstruction. Thorough experiments demonstrate tha
                 </div>
                 
                 <div class="col-4">
-                    <div class="position-relative novel-depth-imgs" style="width: 60%;translate:40%" >
-                        <img  src="imgs/bundlefusion/1500_disp.gif" class="preload-teaser-41 rounded img-fluid img-thumbnail">
+                    <div class="position-relative" style="width: 60%;translate:40%" >
+                        <img  src="imgs/bundlefusion/1500_disp.gif" class="preload-teaser-41 novel-depth-imgs rounded img-fluid img-thumbnail">
                         <img src="imgs/bundlefusion/1500_rgb.gif" class="preload-teaser-41 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">    
                     </div>
                     <!-- <div class="position-relative novel-depth-imgs/kitti">
@@ -263,8 +276,8 @@ together to obtain 3D scene reconstruction. Thorough experiments demonstrate tha
                 </div>
                 
                 <div class="col-4">
-                    <div class="position-relative novel-depth-imgs" style="width: 60%;translate:40%"" >
-                        <img  src="imgs/bundlefusion/2200_disp.gif" class="preload-teaser-51 rounded img-fluid img-thumbnail">
+                    <div class="position-relative " style="width: 60%;translate:40%"" >
+                        <img  src="imgs/bundlefusion/2200_disp.gif" class="preload-teaser-51 novel-depth-imgs rounded img-fluid img-thumbnail">
                         <img src="imgs/bundlefusion/2200_rgb.gif" class="preload-teaser-51 rgbs rounded img-fluid img-thumbnail position-absolute top-0 end-0">    
                     </div>
                     <!-- <div class="position-relative novel-depth-imgs/kitti">
@@ -334,10 +347,10 @@ together to obtain 3D scene reconstruction. Thorough experiments demonstrate tha
                     </tr>
                     <tr>
                         <td class="text-center"></td>
-                        <td class="input-td"><img src="imgs/kitti/quals/000460.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
-                        <td class="input-td"><img src="imgs/kitti/quals/000935.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
-                        <td class="input-td"><img src="imgs/kitti/quals/002180.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
-                        <td class="input-td"><img src="imgs/kitti/quals/003500.png"  class="novel-depth-imgs rounded img-fluid img-thumbnail"></td>
+                        <td class="input-td"><img src="imgs/kitti/quals/000460.png"  class="novel-depth-input-img rounded img-fluid img-thumbnail"></td>
+                        <td class="input-td"><img src="imgs/kitti/quals/000935.png"  class="novel-depth-input-img rounded img-fluid img-thumbnail"></td>
+                        <td class="input-td"><img src="imgs/kitti/quals/002180.png"  class="novel-depth-input-img rounded img-fluid img-thumbnail"></td>
+                        <td class="input-td"><img src="imgs/kitti/quals/003500.png"  class="novel-depth-input-img rounded img-fluid img-thumbnail"></td>
                     </tr>
                     
                     <tr style="border-top: 1px solid #b8b8b8;">
@@ -401,7 +414,7 @@ together to obtain 3D scene reconstruction. Thorough experiments demonstrate tha
                     </tr>
                     <tr style="border-top: 1px solid #b8b8b8;">
                         <td></td>
-                        <td colspan="4" class="text-center">3D Reconstruction</td>
+                        <td colspan="4" class="text-center">3D Reconstruction (Mesh)</td>
                     </tr>
                     <tr>
                         <td class="text-center"></td>
