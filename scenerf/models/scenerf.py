@@ -78,6 +78,10 @@ class scenerf(pl.LightningModule):
         feature = 256
         self.out_img_W = sphere_W
         self.out_img_H = sphere_H
+
+        # The numbers (104.7294, 75.4815, 131.1128, 49.5950) are the FOV of the spherical mapping 
+        # Computed by running the following script: 
+        # python scenerf/scripts/determine_angles.py
         self.spherical_mapping = SphericalMapping(
             v_angle_max=104.7294 + add_fov_ver,
             v_angle_min=75.4815 - add_fov_ver,
