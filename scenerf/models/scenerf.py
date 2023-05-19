@@ -734,7 +734,7 @@ class scenerf(pl.LightningModule):
         closest_pts_to_depth, weights_at_depth_idx = torch.min(abs_diff, dim=1)
 
         weights_at_depth = torch.gather(
-            weights, dim=1, index=weights_at_depth_idx.unsqueeze(-1)).squeeze()
+            weights, dim=1, index=weights_at_depth_idx.unsqueeze(-1)).squeeze(-1)
  
 
 
