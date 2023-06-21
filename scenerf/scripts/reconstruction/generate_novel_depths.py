@@ -49,7 +49,8 @@ def main(
     model.cuda()
     model.eval()
 
-
+    rel_poses = sample_rel_poses(step=step, angle=angle, max_distance=max_distance)
+        
     with torch.no_grad():
         for batch in tqdm(data_loader):
    
@@ -67,8 +68,6 @@ def main(
             x_rgbs = model.net_rgb(img_inputs, pix=pix_coords,
                                 pix_sphere=out_pix_coords)
             
-            rel_poses = sample_rel_poses(step=step, angle=angle, max_distance=max_distance)
-
             for i in range(bs): 
                 x_rgb = {}
                 for k in x_rgbs:
