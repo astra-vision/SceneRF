@@ -13,11 +13,11 @@ Inria, Paris, France.
 
 If you find this work or code useful, please cite our [paper](https://arxiv.org/abs/2212.02501) and [give this repo a star](https://github.com/astra-vision/SceneRF/stargazers):
 ```
-@InProceedings{cao2022scenerf,
+@InProceedings{cao2023scenerf,
     author    = {Cao, Anh-Quan and de Charette, Raoul},
     title     = {SceneRF: Self-Supervised Monocular 3D Scene Reconstruction with Radiance Fields},
-    publisher = {arxiv},
-    year      = {2022},
+    booktitle = {ICCV},
+    year      = {2023},
 }
 ```
 
