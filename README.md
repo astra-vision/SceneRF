@@ -2,6 +2,8 @@
 
 # SceneRF: Self-Supervised Monocular 3D Scene Reconstruction with Radiance Fields
 
+ICCV 2023
+
 [Anh-Quan Cao](https://anhquancao.github.io)&nbsp;&nbsp;&nbsp;
 [Raoul de Charette](https://team.inria.fr/rits/membres/raoul-de-charette/)  
 Inria, Paris, France.  
