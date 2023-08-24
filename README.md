@@ -49,17 +49,24 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
 - [News](#news) 
 - [Installation](#installation)
 - [Dataset](#dataset)
-  - [KITTI](#kitti)
-  - [Bundlefusion](#bundlefusion)
+  - [KITTI](#kitti-dataset)
+  - [Bundlefusion](#bundlefusion-dataset)
 - [Training](#training)
-  - [KITTI](#kitti)
-  - [Bundlefusion](#bundlefusion)
+  - [KITTI](#train-kitti)
+  - [Bundlefusion](#train-bundlefusion)
 - [Evaluation](#evaluation)
-  - [Pretrained model](#pretrained-model)
-  - [Novel depths synthesis](#novel-depths-synthesis)
-  - [Novel views synthesis](#novel-views-synthesis)
-  - [Scene reconstruction](#scene-reconstruction)
-  - [Mesh extraction and visualization](#mesh-extraction-and-visualization)
+  - [KITTI](#evaluate-kitti)
+      - [Pretrained model](#pretrained-model-on-kitti)
+      - [Novel depths synthesis](#novel-depths-synthesis-on-kitti)
+      - [Novel views synthesis](#novel-views-synthesis-on-kitti)
+      - [Scene reconstruction](#scene-reconstruction-on-kitti)
+      - [Mesh extraction and visualization](#mesh-extraction-and-visualization)
+  - [Bundlefusion](#evaluate-bundlefusion)
+      - [Pretrained model](#pretrained-model-on-bundlefusion)
+      - [Novel depths synthesis](#novel-depths-synthesis-on-bundlefusion)
+      - [Novel views synthesis](#novel-views-synthesis-on-bundlefusion)
+      - [Scene reconstruction](#scene-reconstruction-on-bundlefusion)
+      - [Mesh extraction and visualization](#mesh-extraction-and-visualization)
 - [Acknowledgment](#acknowledgment)
 
 # News
@@ -106,7 +113,7 @@ $ pip install -e ./
 
 
 # Dataset
-## KITTI
+## KITTI dataset
 1. To train and evaluate novel depths/views synthesis, please download on [KITTI Odometry website](http://www.cvlibs.net/datasets/kitti/eval_odometry.php) the following data: 
     - Odometry data set (calibration files, 1 MB)
     - Odometry data set (color, 65 GB)
@@ -123,7 +130,7 @@ $ pip install -e ./
     $ export KITTI_PREPROCESS=/path/to/kitti/preprocess/folder
     $ export KITTI_ROOT=/path/to/kitti 
     ```
-## Bundlefusion
+## Bundlefusion dataset
 1. Please download 8 scenes from [Bundlefusion website](https://graphics.stanford.edu/projects/bundlefusion/) and unzip them to `/gpfsdswork/dataset/bundlefusion` (change to your dataset directory).
 2. Store paths in environment variables for faster access (**Note: folder 'dataset' is in /path/to/bundlefusion**):    
     ```
@@ -131,7 +138,7 @@ $ pip install -e ./
     ```
 
 # Training
-## KITTI
+## Train KITTI
 1. Create folders to store training logs at **/path/to/kitti/logdir**.
 
 2. Store in an environment variable:
@@ -153,7 +160,7 @@ $ pip install -e ./
         --n_gaussians=4 --n_pts_per_gaussian=8  \
         --max_epochs=50 --exp_prefix=Train
     ```
-## Bundlefusion
+## Train Bundlefusion
 
 1. Create folders to store training logs at **/path/to/kitti/logdir**.
 
@@ -176,17 +183,17 @@ $ pip install -e ./
     ```
 
 # Evaluation
-## KITTI
+## Evaluate KITTI
 Create folders to store intermediate evaluation data at `/path/to/evaluation/save/folder` and reconstruction data at `/path/to/reconstruction/save/folder`.
 
 ```
 $ export EVAL_SAVE_DIR=/path/to/evaluation/save/folder
 $ export RECON_SAVE_DIR=/path/to/reconstruction/save/folder
 ```
-### Pretrained model
+### Pretrained model on KITTI
 Please download the [pretrained model](https://drive.google.com/file/d/1mfVM2oXDw6MkWaD1Ds-PG2RBt9k-q8yE/view?usp=share_link).
     
-### Novel depths synthesis
+### Novel depths synthesis on KITTI
 Supposed we obtain the model from the training step at `/path/to/model/checkpoint/last.ckpt`. We follow the steps below to evaluate the novel depths synthesis performance. 
 1. Compute the depth metrics on all frames in each sequence, additionally grouped by the distance to the input frame.
 
@@ -207,7 +214,7 @@ $ python scenerf/scripts/evaluation/agg_depth_metrics.py \
     --preprocess_root=$KITTI_PREPROCESS
 ```
 
-### Novel views synthesis
+### Novel views synthesis on KITTI
 Given the trained model at `/path/to/model/checkpoint/last.ckpt`, the novel views synthesis performance is obtained as followed:
 1. Render an RGB image for every frame in each sequence.
 ```
@@ -223,8 +230,38 @@ $ python scenerf/scripts/evaluation/render_colors.py \
 $ cd scenerf/
 $ python scenerf/scripts/evaluation/eval_color.py --eval_save_dir=$EVAL_SAVE_DIR
 ```
+### Scene reconstruction on KITTI
+1. Generate novel views/depths for reconstructing scene.
+```
+$ cd scenerf/
+$ python scenerf/scripts/reconstruction/generate_novel_depths.py \
+    --recon_save_dir=$RECON_SAVE_DIR \
+    --root=$KITTI_ROOT \
+    --preprocess_root=$KITTI_PREPROCESS \
+    --model_path=/path/to/model/checkpoint \
+    --angle=10 --step=0.5 --max_distance=10.1
+```
 
-## Bundlefusion
+2. Convert the novel views/depths to TSDF volume. **Note: the angle, step, and max_distance should match the previous step.**
+```
+$ cd scenerf/
+$ python scenerf/scripts/reconstruction/depth2tsdf.py \
+    --recon_save_dir=$RECON_SAVE_DIR \
+    --root=$KITTI_ROOT \
+    --preprocess_root=$KITTI_PREPROCESS \
+    --angle=10 --step=0.5 --max_distance=10.1
+```
+3. Compute scene reconstruction metrics using the generated TSDF volumes.
+```
+$ cd scenerf/
+$ python scenerf/scripts/evaluation/eval_sr.py \
+    --recon_save_dir=$RECON_SAVE_DIR \
+    --root=$KITTI_ROOT \
+    --preprocess_root=$KITTI_PREPROCESS
+```
+
+
+## Evaluate Bundlefusion
 Create folders to store intermediate evaluation data at `/gpfsscratch/rech/kvd/uyl37fq/to_delete/eval` and reconstruction data at `/gpfsscratch/rech/kvd/uyl37fq/to_delete/recon`.
 
 ```
@@ -232,10 +269,10 @@ $ export EVAL_SAVE_DIR=/gpfsscratch/rech/kvd/uyl37fq/to_delete/eval
 $ export RECON_SAVE_DIR=/gpfsscratch/rech/kvd/uyl37fq/to_delete/recon
 ```
 
-### Pretrained model
+### Pretrained model on Bundlefusion
 Please download the [pretrained model](https://drive.google.com/file/d/1Zz5-9nFqZCzbe-HJaVoGvCNRgR3I_aIq/view?usp=sharing).
     
-### Novel depths synthesis
+### Novel depths synthesis on Bundlefusion
 Supposed we obtain the model from the training step at `/path/to/model/checkpoint/last.ckpt`. We follow the steps below to evaluate the novel depths synthesis performance. 
 1. Compute the depth metrics on all frames in each sequence, additionally grouped by the distance to the input frame.
 
@@ -254,7 +291,7 @@ $ python scenerf/scripts/evaluation/agg_depth_metrics_bf.py \
     --root=$BF_ROOT
 ```
 
-### Novel views synthesis
+### Novel views synthesis on Bundlefusion
 Given the trained model at `/gpfsscratch/rech/kvd/uyl37fq/to_delete/last.ckpt`, the novel views synthesis performance is obtained as followed:
 1. Render an RGB image for every frame in each sequence.
 ```
@@ -271,7 +308,7 @@ $ python scenerf/scripts/evaluation/eval_color_bf.py --eval_save_dir=$EVAL_SAVE_
 ```
 
 
-## Scene reconstruction
+## Scene reconstruction on Bundlefusion
 1. Generate novel views/depths for reconstructing scene.
 ```
 $ cd scenerf/
