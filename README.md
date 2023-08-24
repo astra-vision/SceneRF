@@ -47,9 +47,13 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
 
 # Table of Content
 - [News](#news) 
-- [Installation](#installation)  
+- [Installation](#installation)
 - [Dataset](#dataset)
+  - [KITTI](#kitti)
+  - [Bundlefusion](#bundlefusion)
 - [Training](#training)
+  - [KITTI](#kitti)
+  - [Bundlefusion](#bundlefusion)
 - [Evaluation](#evaluation)
   - [Pretrained model](#pretrained-model)
   - [Novel depths synthesis](#novel-depths-synthesis)
@@ -229,7 +233,7 @@ $ export RECON_SAVE_DIR=/gpfsscratch/rech/kvd/uyl37fq/to_delete/recon
 ```
 
 ### Pretrained model
-Please download the [pretrained model]().
+Please download the [pretrained model](https://drive.google.com/file/d/1Zz5-9nFqZCzbe-HJaVoGvCNRgR3I_aIq/view?usp=sharing).
     
 ### Novel depths synthesis
 Supposed we obtain the model from the training step at `/path/to/model/checkpoint/last.ckpt`. We follow the steps below to evaluate the novel depths synthesis performance. 
@@ -303,7 +307,7 @@ $ python scenerf/scripts/evaluation/eval_sc_bf.py \
 ```
 
 ## Mesh extraction and visualization
-Mesh can be obtained as [in this line](https://github.com/astra-vision/SceneRF/blob/main/scenerf/scripts/reconstruction/depth2tsdf.py#L107), and drawed with open3d as following:
+Mesh can be obtained from [this line for KITTI](https://github.com/astra-vision/SceneRF/blob/main/scenerf/scripts/reconstruction/depth2tsdf.py#L107) and from [this line for Bundlefusion](https://github.com/astra-vision/SceneRF/blob/main/scenerf/scripts/reconstruction/depth2tsdf_bf.py#L119) , and drawed with open3d as following:
 ```
 import open3d as o3d
 
