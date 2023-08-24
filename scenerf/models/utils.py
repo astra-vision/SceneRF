@@ -3,6 +3,29 @@ import torch
 import torch.nn.functional as F
 
 
+def sample_rel_poses_bf(angle=0, max_distance=2.1, step=0.2):
+    steps = torch.arange(start=0, end=max_distance, step=step)
+    
+    rel_poses = {}
+    for step in steps:
+        angles = [0]
+        if angle != 0:
+            angles += [-angle, angle]
+        print(step, angles)
+        for angle in angles:
+            rel_pose = torch.eye(4)
+            rel_pose[2, 3] += step
+            rad = angle/180 * math.pi
+            rot_matrix_y = torch.eye(4)
+            rot_matrix_y[:3, :3] = torch.tensor([
+                [math.cos(rad), 0, math.sin(rad)],
+                [0, 1, 0],
+                [-math.sin(rad), 0, math.cos(rad)]
+            ])    
+            rel_poses[(step, angle)] = rot_matrix_y @ rel_pose
+    return rel_poses
+
+
 def sample_rel_poses(step=0.5, angle=0, max_distance=10.1):
     angles = [0]
     if angle != 0:

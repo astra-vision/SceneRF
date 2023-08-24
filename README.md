@@ -102,7 +102,7 @@ $ pip install -e ./
 
 
 # Dataset
-
+## KITTI
 1. To train and evaluate novel depths/views synthesis, please download on [KITTI Odometry website](http://www.cvlibs.net/datasets/kitti/eval_odometry.php) the following data: 
     - Odometry data set (calibration files, 1 MB)
     - Odometry data set (color, 65 GB)
@@ -119,9 +119,15 @@ $ pip install -e ./
     $ export KITTI_PREPROCESS=/path/to/kitti/preprocess/folder
     $ export KITTI_ROOT=/path/to/kitti 
     ```
+## Bundlefusion
+1. Please download 8 scenes from [Bundlefusion website](https://graphics.stanford.edu/projects/bundlefusion/) and unzip them to `/gpfsdswork/dataset/bundlefusion` (change to your dataset directory).
+2. Store paths in environment variables for faster access (**Note: folder 'dataset' is in /path/to/bundlefusion**):    
+    ```
+    $ export BF_ROOT=/gpfsdswork/dataset/bundlefusion
+    ```
 
 # Training
-
+## KITTI
 1. Create folders to store training logs at **/path/to/kitti/logdir**.
 
 2. Store in an environment variable:
@@ -134,7 +140,7 @@ $ pip install -e ./
 
     ```
     $ cd scenerf/
-    $ python scenerf/scripts/train.py \
+    $ python scenerf/scripts/train_kitti.py \
         --bs=4 --n_gpus=4 \
         --enable_log=True \
         --preprocess_root=$KITTI_PREPROCESS \
@@ -143,19 +149,40 @@ $ pip install -e ./
         --n_gaussians=4 --n_pts_per_gaussian=8  \
         --max_epochs=50 --exp_prefix=Train
     ```
+## Bundlefusion
+
+1. Create folders to store training logs at **/path/to/kitti/logdir**.
+
+2. Store in an environment variable:
+
+    ```
+    $ export BF_LOG=/path/to/bundlefusion/logdir
+    $ export BF_LOG=/gpfsscratch/rech/kvd/uyl37fq/logs/monoscene2/bundlefusion
+    ```
+
+3. Train scenerf using 4 v100-32g GPUs with batch_size of 4 (1 item per GPU):
+
+    ```
+    $ cd scenerf/
+    $ python scenerf/scripts/train_bundlefusion.py --bs=4 --n_gpus=4 \
+        --n_rays=2048 --lr=2e-5 \
+        --enable_log=True \
+        --root=$BF_ROOT \
+        --logdir=$BF_LOG
+    ```
 
 # Evaluation
-
+## KITTI
 Create folders to store intermediate evaluation data at `/path/to/evaluation/save/folder` and reconstruction data at `/path/to/reconstruction/save/folder`.
 
 ```
 $ export EVAL_SAVE_DIR=/path/to/evaluation/save/folder
 $ export RECON_SAVE_DIR=/path/to/reconstruction/save/folder
 ```
-## Pretrained model
+### Pretrained model
 Please download the [pretrained model](https://drive.google.com/file/d/1mfVM2oXDw6MkWaD1Ds-PG2RBt9k-q8yE/view?usp=share_link).
     
-## Novel depths synthesis
+### Novel depths synthesis
 Supposed we obtain the model from the training step at `/path/to/model/checkpoint/last.ckpt`. We follow the steps below to evaluate the novel depths synthesis performance. 
 1. Compute the depth metrics on all frames in each sequence, additionally grouped by the distance to the input frame.
 
@@ -176,7 +203,7 @@ $ python scenerf/scripts/evaluation/agg_depth_metrics.py \
     --preprocess_root=$KITTI_PREPROCESS
 ```
 
-## Novel views synthesis
+### Novel views synthesis
 Given the trained model at `/path/to/model/checkpoint/last.ckpt`, the novel views synthesis performance is obtained as followed:
 1. Render an RGB image for every frame in each sequence.
 ```
@@ -193,34 +220,86 @@ $ cd scenerf/
 $ python scenerf/scripts/evaluation/eval_color.py --eval_save_dir=$EVAL_SAVE_DIR
 ```
 
+## Bundlefusion
+Create folders to store intermediate evaluation data at `/gpfsscratch/rech/kvd/uyl37fq/to_delete/eval` and reconstruction data at `/gpfsscratch/rech/kvd/uyl37fq/to_delete/recon`.
+
+```
+$ export EVAL_SAVE_DIR=/gpfsscratch/rech/kvd/uyl37fq/to_delete/eval
+$ export RECON_SAVE_DIR=/gpfsscratch/rech/kvd/uyl37fq/to_delete/recon
+```
+
+### Pretrained model
+Please download the [pretrained model]().
+    
+### Novel depths synthesis
+Supposed we obtain the model from the training step at `/path/to/model/checkpoint/last.ckpt`. We follow the steps below to evaluate the novel depths synthesis performance. 
+1. Compute the depth metrics on all frames in each sequence, additionally grouped by the distance to the input frame.
+
+```
+$ cd scenerf/
+$ python scenerf/scripts/evaluation/save_depth_metrics_bf.py \
+    --eval_save_dir=$EVAL_SAVE_DIR \
+    --root=$BF_ROOT \
+    --model_path=/gpfsscratch/rech/kvd/uyl37fq/to_delete/last.ckpt
+```
+2. Aggregate the depth metrics from all sequences.
+```
+$ cd scenerf/
+$ python scenerf/scripts/evaluation/agg_depth_metrics_bf.py \
+    --eval_save_dir=$EVAL_SAVE_DIR \
+    --root=$BF_ROOT
+```
+
+### Novel views synthesis
+Given the trained model at `/gpfsscratch/rech/kvd/uyl37fq/to_delete/last.ckpt`, the novel views synthesis performance is obtained as followed:
+1. Render an RGB image for every frame in each sequence.
+```
+$ cd scenerf/
+$ python scenerf/scripts/evaluation/render_colors_bf.py \
+    --eval_save_dir=$EVAL_SAVE_DIR \
+    --root=$BF_ROOT \
+    --model_path=/gpfsscratch/rech/kvd/uyl37fq/to_delete/last.ckpt
+```
+2. Compute the metrics, additionally grouped by the distance to the input frame.
+```
+$ cd scenerf/
+$ python scenerf/scripts/evaluation/eval_color_bf.py --eval_save_dir=$EVAL_SAVE_DIR
+```
+
+
 ## Scene reconstruction
 1. Generate novel views/depths for reconstructing scene.
 ```
 $ cd scenerf/
-$ python scenerf/scripts/reconstruction/generate_novel_depths.py \
+$ python scenerf/scripts/reconstruction/generate_novel_depths_bf.py \
     --recon_save_dir=$RECON_SAVE_DIR \
-    --root=$KITTI_ROOT \
-    --preprocess_root=$KITTI_PREPROCESS \
-    --model_path=/path/to/model/checkpoint \
-    --angle=10 --step=0.5 --max_distance=10.1
+    --root=$BF_ROOT \
+    --model_path=/gpfsscratch/rech/kvd/uyl37fq/to_delete/last.ckpt \
+    --angle=30 --step=0.2 --max_distance=2.1
 ```
 
 2. Convert the novel views/depths to TSDF volume. **Note: the angle, step, and max_distance should match the previous step.**
 ```
 $ cd scenerf/
-$ python scenerf/scripts/reconstruction/depth2tsdf.py \
+$ python scenerf/scripts/reconstruction/depth2tsdf_bf.py \
     --recon_save_dir=$RECON_SAVE_DIR \
-    --root=$KITTI_ROOT \
-    --preprocess_root=$KITTI_PREPROCESS \
-    --angle=10 --step=0.5 --max_distance=10.1
+    --root=$BF_ROOT \
+    --angle=30 --step=0.2 --max_distance=2.1
 ```
-3. Compute scene reconstruction metrics using the generated TSDF volumes.
+3. Generate the voxel ground-truth for evaluation.
 ```
 $ cd scenerf/
-$ python scenerf/scripts/evaluation/eval_sr.py \
+$ python scenerf/scripts/reconstruction/generate_sc_gt_bf.py \
     --recon_save_dir=$RECON_SAVE_DIR \
-    --root=$KITTI_ROOT \
-    --preprocess_root=$KITTI_PREPROCESS
+    --root=$BF_ROOT
+```
+
+4. Compute scene reconstruction metrics using the generated TSDF volumes.
+```
+$ cd scenerf/
+$ python scenerf/scripts/evaluation/eval_sc_bf.py \
+    --recon_save_dir=$RECON_SAVE_DIR \
+    --root=$BF_ROOT
 ```
 
 ## Mesh extraction and visualization

@@ -1,0 +1,34 @@
+# Python intermediate files
+*.pyc
+*.pyo
+*.egg-info/
+__pycache__/
+*.pyd
+
+# Virtual environment
+venv/
+*.venv
+.env
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Datasets and model checkpoints (depends on your directory structure)
+data/
+checkpoints/
+models/
+*.h5
+
+# Log files
+logs/
+*.log
+
+# IDEs
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# MacOS system files
+.DS_Store

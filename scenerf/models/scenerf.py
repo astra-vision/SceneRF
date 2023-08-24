@@ -19,10 +19,9 @@ from scenerf.models.utils import (
 from scenerf.models.spherical_mapping import SphericalMapping
 
 
-class scenerf(pl.LightningModule):
+class SceneRF(pl.LightningModule):
     def __init__(
             self,
-            dataset,
             som_sigma,
             lr=1e-5,
             weight_decay=0,
@@ -46,7 +45,6 @@ class scenerf(pl.LightningModule):
         
         self.use_color = use_color
         self.use_reprojection = use_reprojection
-        self.dataset = dataset
         self.lr = lr
         self.weight_decay = weight_decay
         self.img_size = img_size
