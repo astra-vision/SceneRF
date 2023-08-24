@@ -13,15 +13,7 @@ venv/
 # Jupyter notebook checkpoints
 .ipynb_checkpoints/
 
-# Datasets and model checkpoints (depends on your directory structure)
-data/
-checkpoints/
-models/
-*.h5
 
-# Log files
-logs/
-*.log
 
 # IDEs
 # PyCharm
