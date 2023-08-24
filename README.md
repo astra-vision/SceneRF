@@ -163,12 +163,11 @@ $ pip install -e ./
     ```
 ## Train Bundlefusion
 
-1. Create folders to store training logs at **/path/to/kitti/logdir**.
+1. Create folders to store training logs at **/gpfsscratch/rech/kvd/uyl37fq/logs/monoscene2/bundlefusion** (Change to your directory).
 
 2. Store in an environment variable:
 
     ```
-    $ export BF_LOG=/path/to/bundlefusion/logdir
     $ export BF_LOG=/gpfsscratch/rech/kvd/uyl37fq/logs/monoscene2/bundlefusion
     ```
 
@@ -274,7 +273,7 @@ $ export RECON_SAVE_DIR=/gpfsscratch/rech/kvd/uyl37fq/to_delete/recon
 Please download the [pretrained model](https://drive.google.com/file/d/1Zz5-9nFqZCzbe-HJaVoGvCNRgR3I_aIq/view?usp=sharing).
     
 ### Novel depths synthesis on Bundlefusion
-Supposed we obtain the model from the training step at `/path/to/model/checkpoint/last.ckpt`. We follow the steps below to evaluate the novel depths synthesis performance. 
+Supposed we obtain the model from the training step at `/gpfsscratch/rech/kvd/uyl37fq/to_delete/last.ckpt` (Change to your location). We follow the steps below to evaluate the novel depths synthesis performance. 
 1. Compute the depth metrics on all frames in each sequence, additionally grouped by the distance to the input frame.
 
 ```
