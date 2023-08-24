@@ -60,13 +60,12 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
       - [Novel depths synthesis](#novel-depths-synthesis-on-kitti)
       - [Novel views synthesis](#novel-views-synthesis-on-kitti)
       - [Scene reconstruction](#scene-reconstruction-on-kitti)
-      - [Mesh extraction and visualization](#mesh-extraction-and-visualization)
   - [Bundlefusion](#evaluate-bundlefusion)
       - [Pretrained model](#pretrained-model-on-bundlefusion)
       - [Novel depths synthesis](#novel-depths-synthesis-on-bundlefusion)
       - [Novel views synthesis](#novel-views-synthesis-on-bundlefusion)
       - [Scene reconstruction](#scene-reconstruction-on-bundlefusion)
-      - [Mesh extraction and visualization](#mesh-extraction-and-visualization)
+  - [Mesh extraction and visualization](#mesh-extraction-and-visualization)
 - [Acknowledgment](#acknowledgment)
 
 # News
