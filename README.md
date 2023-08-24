@@ -361,6 +361,4 @@ o3d.visualization.draw_geometries([mesh])
 
 
 # Acknowledgment
-The work was partly funded by the French project SIGHT (ANR-20-CE23-0016) and conducted in the SAMBA collaborative
-project, co-funded by BpiFrance in the Investissement d’Avenir Program. It was performed using HPC resources from GENCI–IDRIS (Grant 2021-AD011012808 and 2022-AD011012808R1). We thank Fabio Pizzati and Ivan Lopes for their kind proofreading.
-
+The work was partly funded by the French project SIGHT (ANR-20-CE23-0016) and conducted in the SAMBA collaborative project, co-funded by BpiFrance in the Investissement d’Avenir Program. It was performed using HPC resources from GENCI–IDRIS (Grant 2021-AD011012808, 2022-AD011012808R1, and 2023-AD011014102). We thank Fabio Pizzati and Ivan Lopes for their kind proofreading and all Astra-vision group members of Inria Paris for the insightful discussions.
