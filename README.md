@@ -190,7 +190,7 @@ $ export EVAL_SAVE_DIR=/path/to/evaluation/save/folder
 $ export RECON_SAVE_DIR=/path/to/reconstruction/save/folder
 ```
 ### Pretrained model on KITTI
-Please download the [pretrained model](https://drive.google.com/file/d/1mfVM2oXDw6MkWaD1Ds-PG2RBt9k-q8yE/view?usp=share_link).
+Please download the [pretrained model](https://www.rocq.inria.fr/rits_files/computer-vision/scenerf/scenerf_kitti.ckpt).
     
 ### Novel depths synthesis on KITTI
 Supposed we obtain the model from the training step at `/path/to/model/checkpoint/last.ckpt`. We follow the steps below to evaluate the novel depths synthesis performance. 
@@ -269,7 +269,7 @@ $ export RECON_SAVE_DIR=/gpfsscratch/rech/kvd/uyl37fq/to_delete/recon
 ```
 
 ### Pretrained model on Bundlefusion
-Please download the [pretrained model](https://drive.google.com/file/d/1Zz5-9nFqZCzbe-HJaVoGvCNRgR3I_aIq/view?usp=sharing).
+Please download the [pretrained model](https://www.rocq.inria.fr/rits_files/computer-vision/scenerf/scenerf_bundlefusion.ckpt).
     
 ### Novel depths synthesis on Bundlefusion
 Supposed we obtain the model from the training step at `/gpfsscratch/rech/kvd/uyl37fq/to_delete/last.ckpt` (Change to your location). We follow the steps below to evaluate the novel depths synthesis performance. 
