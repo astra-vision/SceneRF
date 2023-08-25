@@ -132,7 +132,7 @@ $ pip install -e ./
     ```
 ## Bundlefusion dataset
 1. Please download 8 scenes from [Bundlefusion website](https://graphics.stanford.edu/projects/bundlefusion/) and unzip them to `/gpfsdswork/dataset/bundlefusion` (change to your dataset directory).
-2. Store paths in environment variables for faster access (**Note: folder 'dataset' is in /path/to/bundlefusion**):    
+2. Store paths in environment variables for faster access:    
     ```
     $ export BF_ROOT=/gpfsdswork/dataset/bundlefusion
     ```
