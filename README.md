@@ -25,7 +25,7 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
 
 # Teaser
 <!-- ![](./teaser/method.png) -->
-<img style="width:500px;max-width:100%" src="./teaser/method.png">
+<img style="width:500px;max-width:100%" src="./teaser/teaser.png">
 <table>
 <tr>
     <td align="center"><b>Outdoor</b> scenes</td>
