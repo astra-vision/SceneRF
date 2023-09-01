@@ -86,7 +86,6 @@ def main(
 
 
     model = SceneRF(
-        dataset=dataset,
         lr=lr,
         n_pts_uni=n_pts_uni,
         weight_decay=wd,
