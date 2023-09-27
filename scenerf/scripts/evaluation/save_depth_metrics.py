@@ -1,4 +1,4 @@
-from scenerf.models.scenerf import scenerf
+from scenerf.models.scenerf import SceneRF as scenerf
 from scenerf.data.semantic_kitti.kitti_dm import KittiDataModule
 import torch
 import numpy as np
