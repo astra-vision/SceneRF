@@ -112,7 +112,7 @@ def main(
                 save_last=True,
                 monitor="valdepth/abs_rel",
                 save_top_k=1,
-                mode="max",
+                mode="min",
                 filename="{epoch:03d}-{valdepth/abs_rel:.4f}",
             ),
             lr_monitor,
