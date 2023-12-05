@@ -69,10 +69,11 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
 - [Acknowledgment](#acknowledgment)
 
 # News
-- 24/8/2023: Add code for Bundlefusion.
-- 14/7/2023: SceneRF has been accepted at [ICCV 2023](https://iccv2023.thecvf.com/).
-- 15/3/2022: A new version of SceneRF is [available on arXiv.](https://arxiv.org/abs/2212.02501) :mega:. Code will be updated soon!
-- 10/3/2022: We have included [instructions for drawing the mesh](https://github.com/astra-vision/SceneRF#mesh-extraction-and-visualization).
+- 05/12/2023: Check out our recent work [PaSCo: Urban 3D Panoptic Scene Completion with Uncertainty Awareness](https://astra-vision.github.io/PaSCo/) :rotating_light:
+- 24/08/2023: Add code for Bundlefusion
+- 14/07/2023: SceneRF has been accepted at [ICCV 2023](https://iccv2023.thecvf.com/)
+- 15/03/2022: A new version of SceneRF is [available on arXiv.](https://arxiv.org/abs/2212.02501) :mega:. Code will be updated soon!
+- 10/03/2022: We have included [instructions for drawing the mesh](https://github.com/astra-vision/SceneRF#mesh-extraction-and-visualization)
 
 # Installation
 
