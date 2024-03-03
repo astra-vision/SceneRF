@@ -48,8 +48,8 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
 # Table of Content
 - [News](#news) 
 - [Installation](#installation)
-  - [Conda](#installation-using-conda)
-  - [Docker](#installation-using-docker)
+  - [Conda](#using-conda)
+  - [Docker](#using-docker)
 - [Dataset](#dataset)
   - [KITTI](#kitti-dataset)
   - [Bundlefusion](#bundlefusion-dataset)
