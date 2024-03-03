@@ -48,6 +48,8 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
 # Table of Content
 - [News](#news) 
 - [Installation](#installation)
+  - [Conda](#installation-using-conda)
+  - [Docker](#installation-using-docker)
 - [Dataset](#dataset)
   - [KITTI](#kitti-dataset)
   - [Bundlefusion](#bundlefusion-dataset)
@@ -76,6 +78,7 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
 - 10/03/2022: We have included [instructions for drawing the mesh](https://github.com/astra-vision/SceneRF#mesh-extraction-and-visualization)
 
 # Installation
+## Using Conda
 
 1. Create conda environment:
 
@@ -111,6 +114,23 @@ $ pip install torchmetrics==0.6.0
 ```
 $ pip install -e ./
 ```
+
+## Using Docker
+Make sure the docker daemon is installed and running on your local machine.
+
+1. Build docker container
+```
+$ docker build -t scene-rf .
+```
+
+2. Run interactive container session
+```
+$ docker run -it scene-rf
+```
+
+If the container should be deleted after usage, the ```-rm``` flag can be used.
+If GPUs are available, the ```--gpus all``` flag can be used.
+For more information, follow this [LINK](https://docs.docker.com/config/containers/resource_constraints/)
 
 
 # Dataset
