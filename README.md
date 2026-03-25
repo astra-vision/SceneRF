@@ -71,6 +71,7 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
 - [Acknowledgment](#acknowledgment)
 
 # News
+- 25/03/2026: One step towards generalized unified occupnay prediction with [OccAny: Generalized Unconstrained Urban 3D Occupancy (CVPR'26)](https://valeoai.github.io/OccAny/)
 - 05/12/2023: Check out our recent work [PaSCo: Urban 3D Panoptic Scene Completion with Uncertainty Awareness](https://astra-vision.github.io/PaSCo/) :rotating_light:
 - 24/08/2023: Add code for Bundlefusion
 - 14/07/2023: SceneRF has been accepted at [ICCV 2023](https://iccv2023.thecvf.com/)
