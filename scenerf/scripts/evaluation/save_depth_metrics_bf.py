@@ -35,17 +35,20 @@ def evaluate_depth(gt_depth, pred_depth):
 @click.option('--n_gpus', default=1, help='number of GPUs')
 @click.option('--bs', default=1, help='Batch size')
 @click.option('--n_workers_per_gpu', default=3, help='number of workers per GPU')
+@click.option('--dataset', default='bf', help='bf or tum_rgbd dataset to eval on')
 @click.option('--root', default="", help='path to dataset folder')
 
 @click.option('--model_path', default="", help='model path')
 @click.option('--eval_save_dir', default="")
+
 def main(
-    root,
+    root, dataset,
     bs, n_gpus, n_workers_per_gpu,
     model_path, eval_save_dir):
 
 
     data_module = BundlefusionDM(
+        dataset=dataset,
         root=root,
         batch_size=int(bs / n_gpus),
         num_workers=int(n_workers_per_gpu),

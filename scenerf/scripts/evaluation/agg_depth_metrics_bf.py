@@ -13,15 +13,17 @@ torch.set_grad_enabled(False)
 @click.option('--n_gpus', default=1, help='number of GPUs')
 @click.option('--bs', default=1, help='Batch size')
 @click.option('--n_workers_per_gpu', default=3, help='number of workers per GPU')
+@click.option('--dataset', default='bf', help='bf or tum_rgbd dataset to eval on')
 @click.option('--root', default="", help='path to dataset folder')
 @click.option('--eval_save_dir', default="")
 def main(
-    root,
+    root, dataset,
     bs, n_gpus, n_workers_per_gpu,
     eval_save_dir
     ):
 
     data_module = BundlefusionDM(
+        dataset=dataset,
         root=root,
         batch_size=int(bs / n_gpus),
         num_workers=int(n_workers_per_gpu),
@@ -66,7 +68,7 @@ def main(
     print("=================")
     print("====== End ======")
     print("=================")
-    print(model_name)
+    # print(model_name)
     print_metrics(agg_depth_errors, agg_n_frames)
 
             

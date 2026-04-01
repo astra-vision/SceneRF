@@ -38,15 +38,17 @@ def disparity_normalization_vis(disparity):
 @click.option('--save_depth', default=True)
 @click.option('--model_path', default="", help='model path')
 @click.option('--n_workers_per_gpu', default=10, help='number of workers per GPU')
+@click.option('--dataset', default='bf', help='bf or tum_rgbd dataset to eval on')
 @click.option('--root', default="/gpfsdswork/dataset/bundlefusion", help='path to dataset folder')
 @click.option('--eval_save_dir', default="")
 def main(
-        root, bs, n_gpus, n_workers_per_gpu,
+        root, dataset, bs, n_gpus, n_workers_per_gpu,
         model_path, save_depth, eval_save_dir
 ):
     torch.set_grad_enabled(False)
 
     data_module = BundlefusionDM(
+        dataset=dataset,
         root=root,
         batch_size=int(bs / n_gpus),
         num_workers=int(n_workers_per_gpu),

@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 @click.command()
+@click.option('--dataset', default='bf', help='bf or tum_rgbd dataset to train on')
 @click.option('--logdir', default='', help='log directory')
 @click.option('--root', default='', help='path to dataset folder')
 @click.option('--bs', default=1, help='Batch size')
@@ -39,6 +40,7 @@ logger = logging.getLogger(__name__)
 @click.option('--n_pts_per_gaussian', default=8, help='number of points sampled for each gaussian')
 @click.option('--n_gaussians', default=4, help='number of gaussians')
 @click.option('--n_pts_uni', default=32, help='number of points sampled uniformly')
+@click.option('--n_pts_hier', default=32, help='number of points sampled hierarchically')
 @click.option('--std', default=0.1, help='std of each gaussian')
 
 @click.option('--add_fov_hor', default=14, help='angle added to left and right of the horizontal FOV')
@@ -50,7 +52,7 @@ logger = logging.getLogger(__name__)
 @click.option('--som_sigma', default=0.02, help='sigma parameter for SOM')
 @click.option('--net_2d', default="b7", help='')
 
-@click.option('--max_epochs', default=50, help='max training epochs')
+@click.option('--max_epochs', default=30, help='max training epochs')
 @click.option('--use_color', default=True, help='use color loss')
 @click.option('--use_reprojection', default=True, help='use reprojection loss')
 
@@ -58,7 +60,7 @@ logger = logging.getLogger(__name__)
 @click.option('--frame_interval', default=2, help='interval between frames in a sequence')
 
 def main(
-        root,
+        dataset, root,
         bs, n_gpus, n_workers_per_gpu,
         exp_prefix, pretrained_exp_name,
         logdir, enable_log,
@@ -66,7 +68,7 @@ def main(
         n_rays, sample_grid_size,
         smooth_loss_weight,
         max_sample_depth, eval_depth,
-        n_pts_uni,
+        n_pts_uni, n_pts_hier,
         n_pts_per_gaussian, n_gaussians, std, som_sigma,
         add_fov_hor, add_fov_ver,
         use_color, use_reprojection,
@@ -92,6 +94,7 @@ def main(
     # max_epochs = 20
 
     data_module = BundlefusionDM(
+        dataset=dataset,
         root=root,
         batch_size=int(bs / n_gpus),
         num_workers=int(n_workers_per_gpu),
@@ -106,6 +109,7 @@ def main(
     model = SceneRF(
         lr=lr,
         n_pts_uni=n_pts_uni,
+        n_pts_hier=n_pts_hier,
         weight_decay=wd,
         n_rays=n_rays,
         smooth_loss_weight=smooth_loss_weight,

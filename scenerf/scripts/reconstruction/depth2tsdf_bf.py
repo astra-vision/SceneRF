@@ -52,14 +52,16 @@ def evaluate_depth(gt_depth, pred_depth):
 @click.option('--n_gpus', default=1, help='number of GPUs')
 @click.option('--bs', default=1, help='Batch size')
 @click.option('--n_workers_per_gpu', default=3, help='number of workers per GPU')
+@click.option('--dataset', default='bf', help='bf or tum_rgbd dataset to eval on')
 @click.option('--root', default="/gpfsdswork/dataset/bundlefusion", help='path to dataset folder')
 @click.option('--recon_save_dir', default="")
 @click.option('--angle', default=30)
 @click.option('--step', default=0.2)
 @click.option('--max_distance', default=2.1, help='max pose sample distance')
-def main(root, bs, n_gpus, n_workers_per_gpu, recon_save_dir, max_distance, step, angle):
+def main(root, dataset, bs, n_gpus, n_workers_per_gpu, recon_save_dir, max_distance, step, angle):
 
     data_module = BundlefusionDM(
+        dataset,
         root=root,
         batch_size=int(bs / n_gpus),
         num_workers=int(n_workers_per_gpu),

@@ -60,9 +60,13 @@ def print_metrics(psnr_accum, ssim_accum, lpips_accum, cnt_accum):
 
 @click.command()
 @click.option('--eval_save_dir', default="")
-def main(eval_save_dir):
+@click.option('--dataset', default='bf', help='bf or tum_rgbd dataset to evaluate on')
+def main(eval_save_dir, dataset):
 
-    sequence = "copyroom"
+    if dataset == "bf":
+        sequence = "copyroom"
+    elif dataset == "tum_rgbd":
+        sequence = "rgbd_dataset_freiburg3_long_office_household"
     rgb_save_dir = os.path.join(eval_save_dir, "rgb", sequence)
     render_rgb_save_dir = os.path.join(eval_save_dir, "render_rgb", sequence)
     rgb_paths = glob.glob(os.path.join(rgb_save_dir, "*.png"))

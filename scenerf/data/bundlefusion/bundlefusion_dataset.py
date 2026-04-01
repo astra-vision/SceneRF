@@ -14,6 +14,7 @@ class BundlefusionDataset(Dataset):
     def __init__(
         self,
         split,
+        dataset,
         root,
         n_sources=1,
         frame_interval=4,
@@ -21,13 +22,53 @@ class BundlefusionDataset(Dataset):
         infer_frame_interval=2,
         color_jitter=None,
         select_scans=None,
+        tum_rgbd=False,
     ):
         self.root = root
-        splits = {
-            "train": ["apt0", "apt1", "apt2", "office0", "office1", "office2", "office3"],
-            "val": ["copyroom"],
-            "all": ["apt0", "apt1", "apt2", "office0", "office1", "office2", "office3", "copyroom"]
-        }
+
+        print(dataset)
+        # Select a split based on training dataset being either bf or tum_rgbd
+        if dataset == "bf":
+            splits = {
+                "train": ["apt0", "apt1", "apt2", "office0", "office1", "office2", "office3"],
+                "val": ["copyroom"],
+                "all": ["apt0", "apt1", "apt2", "office0", "office1", "office2", "office3", "copyroom"]
+            }
+
+        elif dataset == "tum_rgbd":
+            splits = {
+                "train": [
+                    "rgbd_dataset_freiburg1_360",
+                    "rgbd_dataset_freiburg1_desk",
+                    "rgbd_dataset_freiburg1_floor",
+                    "rgbd_dataset_freiburg1_room",
+                    "rgbd_dataset_freiburg1_xyz",
+                    "rgbd_dataset_freiburg2_360_hemisphere",
+                    "rgbd_dataset_freiburg2_desk",
+                    "rgbd_dataset_freiburg2_large_no_loop",
+                    "rgbd_dataset_freiburg2_pioneer_360",
+                    "rgbd_dataset_freiburg2_xyz",
+                    "rgbd_dataset_freiburg3_structure_texture_far"
+                ],
+                "val": [
+                    "rgbd_dataset_freiburg3_long_office_household"
+                ],
+                "all": [
+                    "rgbd_dataset_freiburg1_360",
+                    "rgbd_dataset_freiburg1_desk",
+                    "rgbd_dataset_freiburg1_floor",
+                    "rgbd_dataset_freiburg1_room",
+                    "rgbd_dataset_freiburg1_xyz",
+                    "rgbd_dataset_freiburg2_360_hemisphere",
+                    "rgbd_dataset_freiburg2_desk",
+                    "rgbd_dataset_freiburg2_large_no_loop",
+                    "rgbd_dataset_freiburg2_pioneer_360",
+                    "rgbd_dataset_freiburg2_xyz",
+                    "rgbd_dataset_freiburg3_structure_texture_far",
+                    "rgbd_dataset_freiburg3_long_office_household"
+                ]
+            }
+
         self.sequences = splits[split]
         self.n_sources = n_sources
         self.frame_interval = frame_interval
@@ -251,7 +292,7 @@ class BundlefusionDataset(Dataset):
         and save the depth values (in millimeters) into a 2d numpy array.
         The depth image file is assumed to be in 16-bit PNG format, depth in millimeters.
         """
-        depth = imageio.imread(depth_filename) / 1000.0  # numpy.float64
+        depth = imageio.imread(depth_filename)
         depth = np.asarray(depth)
 
         return depth

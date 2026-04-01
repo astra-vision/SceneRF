@@ -1,5 +1,98 @@
 <div align='center'>
 
+# SceneRF (Fork Edition)
+**Self-Supervised Monocular 3D Scene Reconstruction with Radiance Fields**  
+_Original Authors:_ [Anh-Quan Cao](https://anhquancao.github.io), [Raoul de Charette](https://team.inria.fr/rits/membres/raoul-de-charette/)   
+_Inria, Paris, France._  
+
+</div>
+
+**This repository is a personal fork of the official [SceneRF](https://github.com/astra-vision/SceneRF) repository.**  
+Please note that the changes described below are _not_ part of the official SceneRF repository and are _not_ endorsed by the original authors.
+
+---
+## Fork Changelog
+
+This project was completed as a part of the **Machine Learning for 3D Geometry (IN2392)** course at **TUM**.
+
+### **Enhancements in SceneRF Performance**  
+
+- Implemented **Random Fourier Features positional encoding** and **Hierarchical Sampling** (alongside existing sampling techniques) to significantly enhance **novel depths synthesis, novel views synthesis, and scene reconstruction** in SceneRF.
+- Also tried **Multihead Self Attention** in Spherical-UNet, but it didn't improve the results because we didn't have alot of data and compute to train it for longer.
+- Please checkout the project report [here](docs/BetterSceNeRF.pdf).
+- These improvements yield better performance, as shown in the following table:
+
+<img src="assets/outputResults.png">
+
+- The **best results** are highlighted with **bold** font.
+- **Original results** are taken from the SceneRF paper.
+- **Scaled-down results** correspond to a scaled-down model using the configuration in `train_eval_bash_scripts/train_bundlefusion_scaled_down.sh`.
+
+### **Additional Modifications**
+Below is a summary of the modifications introduced in **this fork** to support additional features and datasets. **All credit for the original work goes to the original authors.**
+
+1. **Dataset Argument for TUM RGB-D**  
+   - A new `--dataset` argument has been introduced to:
+     - `scenerf/scripts/train_bundlefusion.py`
+     - `scenerf/data/bundlefusion_dm.py`
+     - `scenerf/data/bundlefusion_dataset.py`
+   - This allows for selecting between **BundleFusion** (`bf`) and **TUM RGB-D** (`tum_rgbd`) during training and data loading.
+
+2. **Modified Evaluation and Reconstruction Scripts**  
+   - Added a `--dataset` argument to:
+     - `scenerf/scripts/evaluation/save_depth_metrics_bf.py`
+     - `scenerf/scripts/evaluation/agg_depth_metrics_bf.py`
+     - `scenerf/scripts/evaluation/render_colors_bf.py`
+     - `scenerf/scripts/reconstruction/generate_novel_depths_bf.py`
+     - `scenerf/scripts/reconstruction/depth2tsdf_bf.py`
+     - `scenerf/scripts/reconstruction/generate_sc_gt_bf.py`
+     - `scenerf/scripts/evaluation/eval_sc_bf.py`
+   - This makes it possible to perform the same depth/TSDF/color metrics evaluations on the TUM RGB-D dataset using a BundleFusion-like format.
+
+3. **TUM RGB-D to BundleFusion Conversion**  
+   - **New File:** `convert_tum_to_bf/tum_to_bf`  
+   - Script to convert the **TUM RGB-D** dataset into a BundleFusion-like directory structure, including:
+     - Pose conversion
+     - Depth scaling
+     - Converting `color.png` to `color.jpg`
+
+4. **Random Fourier Features Positional Encoding**  
+   - **New File:** `scenerf/models/pe_rff.py`
+   - **Modified Files:** `scenerf/models/scenerf_bf.py` (to implement rff positional encoding).
+   - Implements **Random Fourier Features** for positional encoding, providing an alternative to standard positional encodings.
+
+5. **Hierarchical Sampling**  
+   - **Modified Files:** `scenerf/scripts/train_bundlefusion.py` (added a `--n_pts_hier` argument) and `scenerf/models/scenerf_bf.py` (to implement hierarchical sampling).
+   - Implements **Hierarchical Sampling** alongside uniform and probabilistic sampling.
+   - Allows specifying the number of points for hierarchical sampling directly from the command line.
+   - Probabilistic sampling could sometimes overly concentrate on specific surface areas, leading to an imbalanced focus. Hierarchical sampling refines the uniform sampling points, ensuring a more even distribution near surfaces and improving overall reconstruction quality.
+
+6. **Self Attention**
+   - **Modified Files:** `scenerf/models/unet2d_sphere.py` (to implement multihead self attention in the u-net bottleneck).
+
+7. **Training and Evaluation Bash Scripts**
+   - **New File:** `train_eval_bash_scripts/train_bundlefusion_scaled_down.sh` (to train the model with scaled down configuration)
+   - **New File:** `train_eval_bash_scripts/eval_bundlefusion_scaled_down.sh` (to evaluate the model)
+   - Change paths in the bash scripts accordingly.
+   - Train either the **BundleFusion** (`bf`) and **TUM RGB-D** (`tum_rgbd`) dataset by selecting (`bf`) or (`tum_rgbd`) in the bash scripts.
+
+8. **Assets**
+   - **New Directory:** `assets` (to save evaluation results)
+
+---
+
+<div align='center'>
+
+# Original SceneRF README
+
+</div>
+
+Please refer to the original [SceneRF repository](https://github.com/astra-vision/SceneRF) for the most up-to-date official code and instructions. The following sections are from the original SceneRF README (with minor adaptations to reflect the presence of the fork).
+
+----
+
+<div align='center'>
+
 # SceneRF: Self-Supervised Monocular 3D Scene Reconstruction with Radiance Fields
 
 ICCV 2023
@@ -14,7 +107,7 @@ Inria, Paris, France.
 </div>
 
 If you find this work or code useful, please cite our [paper](https://arxiv.org/abs/2212.02501) and [give this repo a star](https://github.com/astra-vision/SceneRF/stargazers):
-```
+```bibtex
 @InProceedings{cao2023scenerf,
     author    = {Cao, Anh-Quan and de Charette, Raoul},
     title     = {SceneRF: Self-Supervised Monocular 3D Scene Reconstruction with Radiance Fields},
